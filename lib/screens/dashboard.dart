@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:productos/components/my_drawer.dart';
 
 class Dashboard extends StatefulWidget {
   final String titulo;
@@ -20,24 +21,31 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MyDrawer(),
       appBar: AppBar(
         title: Text(widget.titulo),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Token: ${widget.accessToken}'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Cerrar sesión'),
+      body: GridView.count(
+        crossAxisCount: 2,
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 6.0, left: 3.0),
+            child: Card(
+              color: Color(0xffffffff),
+              elevation: 3.0,
+              child: ListTile(
+                title: Text(
+                  'Categorias',
+                  textAlign: TextAlign.center,
+                ),
+                subtitle: Image.asset('assets/img/categories.png'),
+                onTap: () {},
+              ),
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
